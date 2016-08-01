@@ -2,12 +2,12 @@ class ReviewsController < ApplicationController
   before_action :find_user
 
   def new
-    @review = Review.new
+    @review = @user.reviews.build
   end
 
   def create
     @review = @user.reviews.build(review_params)
-
+    @review.completed = true
 
     if @review.save
       redirect_to @user
@@ -19,7 +19,7 @@ class ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:rating, :review)
+    params.require(:review).permit(:rating, :review, :completed)
   end
 
   def find_user

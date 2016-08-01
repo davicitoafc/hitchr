@@ -1,0 +1,31 @@
+<div class="login-container">
+  <div class="row">
+    <div class="col-lg-12 text-center">
+      <h1>Log In</h1>
+
+      <div class="log-in-form">
+      <%= form_tag sessions_path, :"data-parsley-validate" => '' do %>
+
+        <div class="field">
+          <%= label_tag :email %> <br />
+          <%= text_field_tag :email, "", data: {:"parsley-type" => "email",
+          :"parsley-trigger" => "blur"}, :required => "",
+          "data-parsley-required-message" => "Please enter your email.",
+          "data-parsley-type-message" => "Please enter valid email." %>
+        </div>
+
+        <div class="field_password">
+           <%= label_tag :password %><br />
+           <%= password_field_tag :password, "", data: {:"parsley-trigger" => "blur"},
+           :required => "",
+           "data-parsley-required-message" => "Please enter your password." %>
+        </div>
+
+        <div class="field">
+          <%= submit_tag "Log In" %>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

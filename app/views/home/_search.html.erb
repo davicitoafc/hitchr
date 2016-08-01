@@ -1,30 +1,12 @@
-<!-- <% @rides.each do |ride| %>
-  <div class="rides-container">
-    <li>
-      <br>
-      <p>From: <%= ride.start_location %></p>
-      <p>To: <%= ride.end_location %></p>
-      <p>Date: <%= ride.date.strftime("%b %-d, %Y") %></p>
-      <p> Time: <%= ride.time.strftime("%-l:%M %p") %></p>
-      <p>Seats Available: <%= ride.seats_available %></p>
-      <p>Comments: <%= ride.comments %></p>
-      <%= link_to "Hitch a ride!", ride_path(ride) %>
-      <br>
-  </li>
-</div>
-<% end %> -->
 
-<h1>Hitchr!</h1>
-<% @rides.each do |ride| %>
-        <div class="grid">
-          <figure class="effect-sadie">
-          <%=image_tag ride.user.avatar.url%>
-            <figcaption>
-              <h2><%= ride.user.first_name %><span><%= ride.user.last_name %></span></h2>
-              <p>Date: <%= ride.date.strftime("%b %-d, %Y") %><br>Time: <%= ride.time.strftime("%-l:%M %p") %></p>
-              <a href="<%= ride_path(ride) %>">View Ride</a>
-            </figcaption>
-          </figure>
-
-        </div>
-    <%end%>
+<% @rides.reverse.each do |ride| %>
+  <div class="grid">
+    <figure class="effect-sadie">
+      <figcaption>
+        <h2>Time: <%= ride.time.strftime("%-l:%M %p") %><span><br>Price: $<%= ride.price %></span></h2>
+        <p>Date: <%= ride.date.strftime("%b %-d, %Y") %><br>Driver: <%= ride.user.first_name %></p>
+        <a href="<%= ride_path(ride) %>">View Ride</a>
+      </figcaption>
+    </figure>
+  </div>
+<%end%>

@@ -1,44 +1,51 @@
-<div class="ride-form-errors">
-  <%= form_for(@ride) do |f| %>
-    <% if @ride.errors.any? %>
-       <div id="error_explanation">
-         <h2><%= pluralize(@ride.errors.count, "error") %> prohibited this ride from being saved:</h2>
+<div class="ride_container">
+  <h1 class="ride_header">Create new Ride</h1>
+    <div class="ride-form-errors">
+      <%= form_for(@ride) do |f| %>
+        <% if @ride.errors.any? %>
+           <div id="error_explanation">
+             <h2><%= pluralize(@ride.errors.count, "error") %> prohibited this ride from being saved:</h2>
 
-         <ul>
-         <% @ride.errors.full_messages.each do |msg| %>
-             <li><%= msg %></li>
-         <% end %>
-         </ul>
-       </div>
+             <ul>
+             <% @ride.errors.full_messages.each do |msg| %>
+                 <li><%= msg %></li>
+             <% end %>
+             </ul>
+           </div>
+        <% end %>
+      </div>
+        <div class="ride-form">
+          <div id="ride_input_style" class="field">
+            <%= f.label :date %><br />
+            <%= f.date_select :date, min: Date.today, id: "date" %>
+          </div>
+          <div id="ride_input_style" class="field">
+            <%= f.label :time %><br />
+            <%= f.time_select :time, {ampm: true, minute_step: 30} %>
+          </div>
+          <div id="ride_input_style" class="field">
+            <%= f.label :seats_available %><br />
+            <%= f.number_field :seats_available, min: 1 , max: 7 %>
+          </div>
+          <div id="ride_input_style" class="field">
+            <%= f.label :start_location %><br />
+            <%= f.text_field :start_location, id: "start_location"%>
+          </div>
+          <div id="ride_input_style" class="field">
+            <%= f.label :end_location %></br>
+            <%= f.text_field :end_location, id: "end_location" %>
+          </div>
+          <div id="ride_input_style" class="field">
+            <%= f.label :price %></br>
+            <%= f.number_field :price, step: 0.01 %>
+          </div>
+          <div id="ride_input_style" class="field">
+            <%= f.label :comments %></br>
+            <%= f.text_field :comments %>
+          </div>
+          <div id="button_divs" class="actions">
+            <%= f.submit class: "ride_button" %>
+          </div>
+        </div>
     <% end %>
 </div>
-  <div class="ride-form">
-    <div class="field">
-      <%= f.label :date %><br />
-      <%= f.date_field :date, min: Date.today %>
-    </div>
-    <div class="field">
-      <%= f.label :time %><br />
-      <%= f.time_select :time, {ampm: true, minute_step: 30} %>
-    </div>
-    <div class="field">
-      <%= f.label :seats_available %><br />
-      <%= f.number_field :seats_available, min: 1 , max: 7 %>
-    </div>
-    <div class="field">
-      <%= f.label :start_location %><br />
-      <%= f.text_field :start_location, id: "start_location"%>
-    </div>
-    <div class="field">
-      <%= f.label :end_location %></br>
-      <%= f.text_field :end_location, id: "end_location" %>
-    </div>
-    <div class="field">
-      <%= f.label :comments %></br>
-      <%= f.text_field :comments %>
-    </div>
-    <div class="actions">
-      <%= f.submit %>
-    </div>
-  </div>
-<% end %>

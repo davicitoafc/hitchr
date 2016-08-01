@@ -1,13 +1,93 @@
-<h1>Hitch a ride with us!</h1>
 
-<%= form_tag search_path, method: "get", class: "search" do %>
-  <%= label_tag "From:" %>
-  <%= text_field_tag :start_location, params[:start_location] %>
-  <%= label_tag "To:" %>
-  <%= text_field_tag :end_location, params[:end_location] %>
-  <%= submit_tag "Hitch a ride!", name: nil, class: "search-button" %>
-<% end %>
+<!-- First wall  -->
+    <div id="outer-wrap" style="width: 100%; height: 600px;">
+      <div id="video-wrap" class="video-wrap">
+          <video id="my-video" preload="metadata" autoplay loop>
+              <source src="<%= asset_path 'video.mp4' %>" type="video/mp4">
+          </video>
+          <div class="content-container">
+            <div class="content-overlay">
+                <!-- <h1 id="main-title">HITCHR</h1> -->
+                <div class="title"><%= image_tag('title.png')%></div>
+                <h3 id="tagline">Book an empty seat with a trusted driver, headed your way.</h3>
+            </div>
+            <div id="search-form" >
+              <%= form_tag search_path, method: "get", class: "search" do %>
 
-<div class="ride-list">
+              <div class="search_wrap" id="start_location_wrap">
+                <div class="search_wrap_icon"><%= image_tag "Start_4Real.png" %></div>
+                <%= text_field_tag :start_location, params[:start_location], placeholder: "Starting from?" %>
+              </div>
 
-</div>
+              <div class="search_wrap" id="end_location_wrap">
+                <div class="search_wrap_icon"><%= image_tag "end_for_real.png" %></div>
+              <%= text_field_tag :end_location, params[:end_location], placeholder: "Where to?" %>
+              </div>
+
+              <div id="search_date_wrap">
+              <%= date_field :date, params[:date], min: Date.today, include_blank: true, class: 'date-search' %>
+              <%= submit_tag "Search", name: nil, class: "search-button" %>
+              <% end %>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+    <!-- first wall end  -->
+
+
+    <!-- second wall  -->
+    <div id="content_1" class="content" >
+      <div class="wall2-info-container">
+      <h2 class="info-1">Trek across Canada</h2>
+      <h3 class="info-3">From campus to home, city to town</h3>
+      </div>
+      <h3 class="info-3" id="description">Mid to long-distance ridesharing made easy</h2>
+
+      <div class="all-icons">
+        <div class="wrap-icon">
+          <div class="icon-home"><%= image_tag('save_money.png')%></div>
+          <h3 class="icon"><span>SAVE MONEY</span>, whether you're a Driver or a Passenger</h3>
+        </div>
+
+        <div class="wrap-icon">
+          <div class="icon-home"><%= image_tag('search.png')%></div>
+          <h3 class="icon"><span>FIND A RIDE</span>, whenever you want, wherever you want</h3>
+        </div>
+
+        <div class="wrap-icon">
+          <div class="icon-home"><%= image_tag('trust.png')%></div>
+          <h3 class="icon"><span>CHOOSE</span> a trusted, community-reviewed travel buddy</h3>
+        </div>
+      </div>
+
+ <!--  second wall end  -->
+
+<!-- third wall  -->
+    <div class="parallax-container" data-parallax="scroll" data-position="top" data-bleed="10" data-image-src="<%= asset_path "secondhp.jpg" %>" data-natural-width="1400" data-natural-height="900" style="height: 446px;"></div>
+    <!-- third wall end -->
+
+    <!-- fourth wall  -->
+    <div id="content_2" class="content" >
+    <div class="wall2-info-container">
+      <h1 class="placeholder-text">Check out some recent rides offered : </h1>
+    </div>
+    <div class="ride-list">
+      <!-- Search results go here -->
+    </div>
+
+    <div class="placeholder-info">
+      <% @rides.reverse.each do |ride| %>
+        <div class="grid">
+          <figure class="effect-sadie">
+            <figcaption>
+              <h2>Departs: <%= ride.date.strftime("%b %-d, %Y") %> at <%= ride.time.strftime("%-l:%M %p") %><span><br>Price: $<%= ride.price %></span></h2>
+              <p>From: <%= ride.start_location %> to: <%= ride.end_location %><br>Driver: <%= ride.user.first_name %></p>
+              <a href="<%= ride_path(ride) %>">View Ride</a>
+            </figcaption>
+          </figure>
+        </div>
+      <%end%>
+    </div>
+  </div>
+    <!-- fourth wall end  -->

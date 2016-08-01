@@ -1,87 +1,148 @@
-<h1> User Profile Page</h1>
-
-    <%= image_tag @user.avatar.url %><br />
-    <%= @user.first_name %> | <%= @user.last_name %><br />
-    <%= @user.email %><br />
-    <%= @user.gender %><br />
-    <%= @user.date_of_birth.strftime("%b %-d, %Y") %><br />
-    <%= number_to_phone(@user.phone_number, area_code: true) %><br>
-    <!-- ADD THE PICTURE! -->
-    <%= link_to "Edit profile", edit_user_path(@user) %>
-</div>
-<div >
-  <% if current_user != @user %>
-  <%= link_to "Add Review", new_user_review_path(@user)%>
-  <% end %>
-  <!--PUT ERB TAGS ON THIS AND FIX
-   render @user.reviews -->
-</div>
-<div>
-  <%= link_to "Offer a Ride", new_ride_path(@user)%>
-</div>
-
-<div>
-  <br /> <h4>Review about me: </h4>
-  <div class="user-reviews-container">
-  <% @user.reviews.each do |review| %>
-  <div class="rateYo stars" data-rating="<%= review.rating %>">
-  </div>
-  <!-- <%= review.rating %> -->
-  <%= review.review %>
-  <div class="reviewing-user-container">
-    <% @reviews.each do |review| %>
-    <%= link_to review.user.first_name, user_path(@user) %>
-  </div>
-  <% end %>
-  <% end %>
-</div>
-
-
-<div>
-  <br /> <h4>My Rides Offered: </h4>
-  <% @rides.each do |ride| %>
-    <li>
-      <p>From: <%= ride.start_location %></p>
-      <p>To: <%= ride.end_location %></p>
-      <p>Date: <%= ride.date.strftime("%b %-d, %Y") %></p>
-      <p> Time: <%= ride.time.strftime("%-l:%M %p") %></p>
-      <p>Seats Available: <%= ride.seats_available %></p>
-      <p>Comments: <%= ride.comments %></p>
-
-
-      <%= link_to "Cancel Ride", ride_path(ride), :method => :delete %><br />
-
-      <br />
-
-        <h4>Hitches on this ride: </h4>
-        <li>
-          <% ride.bookings.each do |booking| %>
-            <p><%= link_to booking.user.first_name, booking.user  %></p>
-            <p><%=  booking.seats %></p>
-            <p><%=  booking.created_at %></p>
-
-      <%= link_to "Decline Booking", booking_path(booking), :method => :delete %><br />
-        </li><br><br>
-      <% end %>
-  </li>
-  <% end %>
-
-</div>
-
-
-
-<div>
-  <br /><h4>My Bookings: </h4>
-  <ul>
-    <% @user.bookings.each do |booking| %>
-        <li>	<h6><%= booking.ride.start_location %> to <%= booking.ride.end_location %></h6>
-          <p><%= link_to "View Ride", booking.ride %></p>
-          <%= booking.user.first_name %> <%= booking.user.last_name %>:<br>
-          Seats requested: <%= booking.seats %><br>
-          Date: <%= booking.ride.date.strftime("%b %-d, %Y") %>
-          <%= link_to "Cancel Booking", booking_path(booking), :method => :delete %>
-        </li><br><br>
-      <% end %>
-
+<div class="tabs">
+  <ul class ="tab-links">
+    <li class="active"><a href="#tab1">Profile</a></li>
+    <li><a href="#tab2">My Reviews</a></li>
+    <% if current_user == @user %>
+      <li><a href="#tab3">My Rides</a></li>
+      <li><a href="#tab4">My Bookings</a></li>
+      <li><a href="#tab5">Ride Feedback</a></li>
+    <%end%>
   </ul>
+
+<div class="tab-content">
+
+
+
+  <div class="tab active" id="tab1">
+    <h1> User Profile Page</h1>
+        <%= image_tag @user.avatar.url, class: "user-avatar"%><br />
+
+        <!-- <% rating_total = [0] %>
+        <%# @user.reviews.each do |review| %>
+          <%# rating_total << review.rating %>
+        <%# end %>
+        <%# rating_average = rating_total.inject(:+) / rating_total.count - 1 %>
+        <div class="rateYo stars-readonly" data-rating=<%# rating_average %>></div>
+          <%# rating_total.count - 1%> ratings
+        <br /> -->
+
+        <%= @user.first_name %> | <%= @user.last_name %><br />
+        <%= @user.email %><br />
+        <%= @user.gender %><br />
+        <%= @user.date_of_birth.strftime("%b %-d, %Y") %><br />
+        <%= number_to_phone(@user.phone_number, area_code: true) %><br>
+        <% if current_user == @user %>
+          <%= link_to "Edit profile", edit_user_path(@user) %>
+        <% end %>
+    <div >
+      <!--PUT ERB TAGS ON THIS AND FIX
+       render @user.reviews -->
+    </div>
+    <div>
+      <% if current_user == @user %>
+        <%= link_to "Offer a Ride", new_ride_path(@user)%>
+      <%end%>
+    </div>
+  </div>
+
+  <div class="tab" id="tab2">
+    <br /> <h4>Reviews about me: </h4>
+    <div class="user-reviews-container">
+    <% @user.reviews.each do |review| %>
+    <div class="rateYo stars" data-rating="<%= review.rating %>">
+    </div>
+    <!-- <%= review.rating %> -->
+    <%= review.review %><br><br>
+    <% end %>
+    </div>
+  </div>
+
+    <div class="tab" id="tab3">
+        <%= link_to "Offer a Ride", new_ride_path(@user)%><br>
+      <br /> <h4>My Rides Offered: </h4>
+      <% @rides.each do |ride| %>
+        <% arr = [0] %>
+        <% ride.bookings.each { |booking| arr << booking.seats} %>
+        <% total_seats = arr.inject(:+) %>
+        <ul>
+          <li>
+            <p><b>From:</b> <%= ride.start_location %></p>
+            <p><b>To:</b> <%= ride.end_location %></p>
+            <p><b>Date:</b> <%= ride.date.strftime("%b %-d, %Y") %></p>
+            <p><b>Time:</b> <%= ride.time.strftime("%-l:%M %p") %></p>
+            <p><b>Seats Available:</b> <%= ride.seats_available - total_seats %></p>
+            <p><b>Price:</b> $<%= ride.price %></p>
+            <p><b>Comments:</b> <%= ride.comments %></p>
+            <p><b>Status: </b> <%= ride.completed ? "Complete" : "Not Complete" %></p>
+
+            <% if ride.completed == false %>
+              <i><%= link_to "Cancel Ride", ride_path(ride), :method => :delete %></i><br />
+              <i><%= link_to "Ride Complete", ride_completed_path(ride), :method => :delete %></i><br />
+            <% end %>
+            <br />
+
+              <h5>Hitches on this ride: </h5>
+              <ul>
+                <li>
+                  <% ride.bookings.each do |booking| %>
+                    <p><%= link_to booking.user.first_name, booking.user  %></p>
+                    <p><%=  booking.seats %></p>
+                    <p><%=  booking.created_at %></p>
+                    <% if ride.completed == false %>
+                      <%= link_to "Decline Booking", booking_path(booking), :method => :delete %><br />
+                  <% end %>
+                </li><br><br>
+              </ul>
+            <% end %>
+          </li>
+          <p>------------------------------------------------------</p>
+        </ul>
+      <% end %>
+    </div>
+
+
+    <div class="tab" id="tab4">
+      <br /><h4>My Bookings: </h4>
+      <ul>
+        <% @user.bookings.each do |booking| %>
+          <% if booking.ride && booking.ride.completed == false %>
+<<<<<<< HEAD
+              <li><h5><b><%= booking.ride.start_location %> to <%= booking.ride.end_location %></b></h5>
+                <p><%= link_to "View Ride", booking.ride %></p>
+=======
+            <li><h5><b><%= booking.ride.start_location %> to <%= booking.ride.end_location %></b></h5>
+>>>>>>> master
+                  <p><b>Your Driver:</b> <%= booking.ride.user.first_name %> <%= booking.ride.user.last_name %><br>
+                     <b>Date:</b> <%= booking.ride.date.strftime("%b %-d, %Y") %> <br>
+                     <b>Seats You Requested:</b> <%= booking.seats %></p>
+                <% if current_user == booking.user %>
+                  <%= link_to "Cancel Booking", booking_path(booking), :method => :delete %><br />
+                <% end %>
+            </li><br><br>
+            <% end %>
+          <%= link_to "Hitch a new ride!", root_path %><br />
+         <% end %>
+      </ul>
+    </div>
+
+
+    <div class="tab" id="tab5">
+        <br /><h4>Ride Feedback: </h4>
+            <% @user.bookings.each do |booking| %>
+            <% if booking.ride && booking.ride.completed? %>
+
+                <li>	<h5><b><%= booking.ride.start_location %> to <%= booking.ride.end_location %></b></h5>
+                  <p><b>Your Driver:</b> <%= booking.ride.user.first_name %> <%= booking.ride.user.last_name %><br>
+                     <b>Date:</b> <%= booking.ride.date.strftime("%b %-d, %Y") %> <br>
+                     <b>Seats You Requested:</b> <%= booking.seats %></p>
+                  <br>
+
+                      <% unless booking.review && booking.review.completed? %>
+                        <%= link_to "Please leave a review!", new_user_review_url(booking.ride.user) %>
+                      <% end %>
+              </li><br><br>
+            <% end %>
+        <% end %>
+    </div>
+  </div>
 </div>

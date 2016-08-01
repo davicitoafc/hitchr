@@ -1,0 +1,12 @@
+Hey <%= @booking.user.first_name %>,
+
+Your ride with <%= @booking.ride.user.first_name %> <%= @booking.ride.user.last_name %>
+has been COMPLETED, from <%= @booking.ride.start_location %> to <%= @booking.ride.end_location %>
+on <%= @booking.ride.date.strftime("%b %-d, %Y") %>.
+
+Total Price was <%= @booking.ride.price %>
+
+<%= link_to "Please leave a review!", user_url(@booking.user) %>
+
+Love,
+The Hitchr Team

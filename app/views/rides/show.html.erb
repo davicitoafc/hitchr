@@ -1,13 +1,41 @@
-<h2>Book this ride</h2>
-<br>
-<%= render "bookings/form" %>
-<br><br>
-<p><%=image_tag @ride.user.avatar.url%></p>
-<p><%= @ride.user.first_name %> <%= @ride.user.last_name %></p>
-<p>From: <%= @ride.start_location %></p>
-<p>To: <%= @ride.end_location %></p>
-<p>Date: <%= @ride.date.strftime("%b %-d, %Y") %></p>
-<p> Time: <%= @ride.time.strftime("%-l:%M %p") %></p>
-<p>Seats Available: <%= @ride.seats_available %></p>
-<p>Comments: <%= @ride.comments %></p><br>
-<%= link_to "Back to All Rides", rides_path%>
+
+<div class="show-header">
+
+</div>
+<div class="show_container">
+  <h1 class="header">Ride Info</h1>
+      <div class="user_info">
+        <div class="picture_div">
+          <h3 class="driver-text">Driver :</h3>
+          <h2 class="driver-link"><%= link_to "#{@ride.user.first_name} #{@ride.user.last_name}", user_path(@ride.user), class: "driver-name" %></h2>
+          <p><%=image_tag @ride.user.avatar.url , class: "user-avatar"%></p>
+        </div>
+            <div class="details">
+              <h3>Ride Details:</h3>
+                <p>From:  <%= @ride.start_location %></p>
+                <p>To:  <%= @ride.end_location %></p>
+                <p>Date:  <%= @ride.date.strftime("%b %-d, %Y") %></p>
+                <p>Departure:  <%= @ride.time.strftime("%-l:%M %p") %></p>
+                <p>Seats Available:  <%= @ride.seats_available %></p>
+                <p>Price: $<%= @ride.price %></p>
+            </div>
+        </div>
+        <div class="comments_style">
+          <% rating_total = [0] %>
+          <% @ride.user.reviews.each do |review| %>
+            <% rating_total << review.rating %>
+          <% end %>
+          <% rating_average = rating_total.inject(:+) / rating_total.count - 1 %>
+          <div class="rateYo stars-readonly" data-rating=<%= rating_average %>></div>
+            <%= rating_total.count - 1%> ratings
+          <br />
+
+          <h3>Comments: </h3><p> <%= @ride.comments %></p><br>
+        </div>
+        <div class="back_to_rides">
+          <% unless @ride.user == current_user && @ride.completed == true%>
+            <%= render "bookings/form" %>
+          <% end %>
+          <%= link_to "Back to All Rides", rides_path, class: "back_to_rides_a"%>
+        </div>
+  </div>

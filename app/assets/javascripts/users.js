@@ -1,6 +1,5 @@
 $(function() {
 
-
   $(".rateYo").rateYo({
     fullStar: true,
     multiColor: {
@@ -40,6 +39,10 @@ $(function() {
      $(this).rateYo(
        "option", "readOnly", true)
 
+   });
+
+   $('.stars-readonly').each(function(index){
+     $(this).rateYo("option", "readOnly", true)
    });
 
 });

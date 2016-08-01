@@ -1,9 +1,10 @@
-<p>Hey, <%= @booking.user.first_name %></p>
+<p>Hey <%= @booking.user.first_name %>,</p>
 
-<p>We're so sorry, but <%= @booking.ride.user.first_name %><%= @booking.ride.user.last_name %>
-	 DECLINED your ride from <%= @booking.ride.start_location %> to <%= @booking.ride.end_location %>
-	 on <%= @booking.ride.date.strftime("%b %-d, %Y") %>.</p>
+<p>We're so sorry, but <%= @booking.ride.user.first_name %> <%= @booking.ride.user.last_name %>
+  cancelled their booking with you from <%= @booking.ride.start_location %> to <%= @booking.ride.end_location %>
+  on <%= @booking.ride.date.strftime("%b %-d, %Y") %>.</p>
 
+<p><%= link_to "Try hitching another ride!", root_url %></p>
 
 <p>Love,</p>
 <p>The Hitchr Team</p>

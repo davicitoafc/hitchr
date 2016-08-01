@@ -1,10 +1,16 @@
 <div class="row">
     <div class="col-lg-12 text-center">
       <h1>Sign Up</h1>
+      <b />
+
+
+      <% unless @user %>
+        <% @user = User.new %>
+      <% end %>
 
       <div class="user-form-errors">
         <% if @user.errors.any? %>
-          <p>Oops - there were problems with your submission. Please fix the following:</p>
+          <p>Oops! We couldn't process your submission. Please check your entries and try again.</p>
           <ul>
             <% @user.errors.full_messages.each do |message| %>
               <li><%= message %></li>
@@ -12,59 +18,80 @@
           </ul>
         <% end %>
       </div>
-
+      <br />
       <div class="user-form">
-        <%= form_for @user do |f| %>
+        <!-- # use Parsley gem/jquery library to do form validations  -->
+        <%= form_for @user, html: {"data-parsley-validate" => ''} do |f| %>
 
           <div class="field">
             <%= f.label :first_name %> <br />
-            <%= f.text_field :first_name %>
+            <%= f.text_field :first_name, "data-parsley-trigger" => "blur", :required => "",
+            "data-parsley-required-message" => "Please enter your first name." %>
           </div>
 
           <div class="field">
             <%= f.label :last_name %> <br />
-            <%= f.text_field :last_name %>
+            <%= f.text_field :last_name, "data-parsley-trigger" => "blur", :required => "",
+            "data-parsley-required-message" => "Please enter your last name." %>
           </div>
 
           <div class="field">
             <%= f.label :gender %> <br />
-            <%= f.select :gender, [['Male','Male'],['Female','Female'], ['Other','Other']] %>
+            <%= f.select :gender, [['Male','Male'],['Female','Female'], ['Other','Other']],
+            "data-parsley-trigger" => "blur", :required => "" %>
           </div>
 
           <div class="field">
             <%= f.label :date_of_birth %> <br />
-            <%= f.date_field :date_of_birth %>
+            <%= f.date_select :date_of_birth, start_year: Date.today.year - 18, end_year: 1940,
+            "data-parsley-trigger" => "blur", :required => "",
+            "data-parsley-required-message" => "Please enter your birthday." %>
+            <p class="form_warning">You must be at least 18 years old to sign up!</p>
           </div>
 
           <div class="field">
             <%= f.label :email %> <br />
-            <%= f.text_field :email %>
+            <%= f.text_field :email, "data-parsley-type" => "email",
+            "data-parsley-trigger" => "blur", :required => "",
+            "data-parsley-required-message" => "Please enter your email address.",
+            "data-parsley-type-message" => "Oops! There seems to be a typo! Please try again." %>
           </div>
 
           <div class="field">
             <%= f.label :phone_number %> <br />
-            <%= f.text_field :phone_number, :placeholder => "123 456 7891" %>
+            <%= f.text_field :phone_number, :placeholder => "416 123 4567",
+            "data-parsley-pattern" => "^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$",
+            "data-parsley-trigger" => "blur",
+            "data-parsley-minlength" => "6", :required => "",
+            "data-parsley-required-message" => "Please enter your number.",
+            "data-parsley-minlength-message" => "Please input at least 6 digits." %>
           </div>
 
           <div class="field">
              <%= f.label :password %><br />
-             <%= f.password_field :password %>
+             <%= f.password_field :password,
+             "data-parsley-trigger" => "blur", "data-parsley-minlength" => "6",
+              :required => "", "data-parsley-required-message" => "Please enter a password.",
+              "data-parsley-minlength-message" => "Please input a password that contains at least 6 characters." %>
           </div>
 
           <div class="field">
              <%= f.label :password_confirmation %><br />
-             <%= f.password_field :password_confirmation %>
+             <%= f.password_field :password_confirmation,
+             "data-parsley-minlength" => "6", "data-parsley-equalto" => "#user_password", "data-parsley-trigger" => "blur",
+             :required => "", "data-parsley-required-message" => "Please confirm your password.",
+             "data-parsley-equalto-message" => "Oops! Looks liks your passwords don't match. Please try again." %>
           </div>
 
           <div class="field">
              <%= f.label :avatar %><br />
-             <%= f.file_field :avatar %>
+             <%= f.file_field :avatar, "data-parsley-pattern" => "/\.(jpe?g|png)$/i" %>
+             <p class="form_warning">Your picture (jpg/jpeg/png) should be less than 3MB.</p>
           </div>
 
           <div class="field">
             <%= f.submit "Save" %>
           </div>
-
         <% end %>
       </div>
     </div>

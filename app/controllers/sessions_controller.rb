@@ -1,20 +1,22 @@
 class SessionsController < ApplicationController
 
     def new
+      @user = User.new
     end
 
     def create
       if @user = login(params[:email], params[:password])
-        redirect_back_or_to(rides_path, alert: 'Login successful')
+        @user = current_user
+        redirect_back_or_to(root_path)
       else
-        flash.now[:alert] = 'Login failed'
-        render action: 'new'
-      end
+        flash[:error] = 'Oops! Password or email seems to be incorrect. Please try logging in again.'
+        render :new
+       end
     end
 
     def destroy
       session[:user_id] = nil
-      redirect_to root_path, notice: "Logged out!"
+      redirect_to root_path
     end
 
 end

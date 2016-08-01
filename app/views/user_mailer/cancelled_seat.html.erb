@@ -1,8 +1,8 @@
 <p>Hey <%= @booking.ride.user.first_name %>,</p>
 
-<p>We're so sorry, but <%= @booking.user.first_name %> <%= @booking.user.last_name %>
-   cancelled their booking with you from <%= @booking.ride.start_location %> to <%= @booking.ride.end_location %>
-   on <%= @booking.ride.date.strftime("%b %-d, %Y") %>.</p>
+<p>We're sorry, but <%= @booking.user.first_name %> <%= @booking.user.last_name %>
+  cancelled their booking with you from <%= @booking.ride.start_location %> to <%= @booking.ride.end_location %>
+  on <%= @booking.ride.date.strftime("%b %-d, %Y") %>.</p>
 
 
 <p>Love,</p>

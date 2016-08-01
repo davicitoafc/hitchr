@@ -1,0 +1,71 @@
+.navbar-inverse {
+  border: none;
+  margin-bottom: 10px;
+  overflow: hidden;
+  padding: 0 30px;
+  text-decoration: none;
+  margin: 0;
+
+
+
+}
+
+.alt-color {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+
+.navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus{
+  background-color: grey;
+
+}
+
+.navbar-inverse .navbar-toggle {
+  background-color: #1ede8b;
+}
+
+
+.navbar-inverse .navbar-nav > li > a {
+  color: white;
+  padding: 14px 16px;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+
+}
+
+
+
+.navbar-inverse .navbar-nav > li > a:hover {
+  color: #1ede8b;
+  -webkit-transition: 0.1s ease;
+  transition: 0.1s ease;
+  border-bottom: 2px solid #1ede8b;
+  margin-right: 9px;
+}
+
+
+
+
+
+.navbar-nav {
+  @media (min-width: 768px){
+
+    float: right;
+    margin: 0;
+  }
+}
+
+
+
+
+.navbar-inverse .navbar-brand {
+  color: white;
+}
+
+.navbar-inverse .navbar-brand:hover {
+  color: #1ede8b;
+  -webkit-transition: 0.1s ease;
+  transition: 0.1s ease;
+  border-bottom: 2px solid #1ede8b;
+  margin-left: 9px;
+}

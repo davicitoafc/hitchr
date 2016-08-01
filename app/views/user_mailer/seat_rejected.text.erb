@@ -1,1 +1,10 @@
-Hey - rejected!
+Hey <%= @booking.user.first_name %>,
+
+We're so sorry, but <%= @booking.ride.user.first_name %> <%= @booking.user.last_name %>
+cancelled their booking with you from <%= @booking.ride.start_location %> to
+<%= @booking.ride.end_location %> on <%= @booking.ride.date.strftime("%b %-d, %Y") %>.
+
+Try hitching another ride by clicking here: <%= root_url %>
+
+Love,
+The Hitchr Team

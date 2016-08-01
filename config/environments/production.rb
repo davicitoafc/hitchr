@@ -64,6 +64,9 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
 
+  # Enqueue emails 
+  config.active_job.queue_adapter = :delayed_job
+
   # Paste this in from rails...
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
