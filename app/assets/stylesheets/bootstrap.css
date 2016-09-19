@@ -133,6 +133,23 @@ input[type="submit"] {
   -webkit-appearance: button;
   cursor: pointer;
 }
+
+.field input[type="submit"] {
+  -webkit-appearance: button;
+  cursor: pointer;
+  border-color: #00df88;
+  border-bottom-color: #109a64;
+  background-color: #00df88;
+  color: #484848;
+  font-size: 15px;
+  padding: 9px 27px;
+  border-radius: 2px;
+  font-family: "Raleway", arial, sans-serif;
+  width: 50%;
+  margin-top: 5px;
+}
+
+
 button[disabled],
 html input[disabled] {
   cursor: default;
@@ -1099,14 +1116,16 @@ textarea {
   line-height: inherit;
 }
 a {
-  color: #337ab7;
+  color: #fff;
   text-decoration: none;
 }
+
 a:hover,
 a:focus {
-  color: #23527c;
+  color: #fff;
   text-decoration: underline;
 }
+
 a:focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
@@ -5032,7 +5051,6 @@ a.thumbnail.active {
 .alert {
   padding: 15px;
   margin-bottom: 20px;
-  border: 1px solid transparent;
   border-radius: 4px;
 }
 .alert h4 {

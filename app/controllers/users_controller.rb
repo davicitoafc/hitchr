@@ -6,25 +6,20 @@ class UsersController < ApplicationController
   end
 
   def show
+    @alt_color = true
     @user = User.find(params[:id])
     @rides = @user.rides
-    #FIX THIS BELOW TO SHOW ALL REVIEWS FOR USER
-    #@reviews = @user.rides.all.reviews
 
-    #FIX THIS BELOW TO SHOW ALL My Bookings
-    #and The bookings made for my ride offered
-    @reviews = @user.reviews
-
-    # if @review = Review.find_by(user_id: @user.id)
-    #   @review
-    # else
-      # @review = @user.reviews.build
-    # end
-
-    @bookings = []
+    @total_rating = [4]
     @rides.each do |ride|
-      @bookings = ride.bookings
+      ride.bookings.each do |booking|
+        unless booking.rating.nil?
+          @total_rating << booking.rating
+        end
+      end
     end
+
+      @average_rating = @total_rating.compact.inject(:+) / @total_rating.length
   end
 
   def create
@@ -35,7 +30,8 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to @user, alert: "Thanks for signing up to Hitchr, #{@user.first_name}!"
     else
-      render :new
+      flash[:error] = @user.errors.full_messages.to_sentence
+      redirect_back_or_to(root_path)
     end
   end
 
@@ -50,6 +46,16 @@ class UsersController < ApplicationController
     else
       render :new
     end
+  end
+
+  def destroy
+   @user = User.find(params[:id])
+   UserMailer.deleted_user(@user).deliver_later
+   @user.rides.delete_all
+   @user.bookings.delete_all
+   @user.destroy
+   flash[:success] = "User deleted"
+   redirect_to root_path
   end
 
   private

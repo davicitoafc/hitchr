@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :load_ride, except: [:destroy]
+  before_action :load_ride, except: [:destroy, :update]
 
   def show
     @booking = @ride.bookings.find(params[:id])
@@ -8,11 +8,27 @@ class BookingsController < ApplicationController
   def create
     @booking = @ride.bookings.build(booking_params)
     @booking.user = current_user
-    if @booking.save
+
+    arr = [0]
+    @booking.ride.bookings.each { |booking| arr << booking.seats }
+    total_seats = arr.compact.inject(:+)
+    # @booking.rating = 0
+
+    if @booking.save && @booking.seats <= total_seats
       UserMailer.seat_confirmation(@ride, @booking).deliver_later
       redirect_to user_path(current_user), alert: "Booking created successfully"
     else
+      flash[:error] = @booking.errors.full_messages.to_sentence
       redirect_to ride_path(@ride)
+    end
+  end
+
+  def update
+    @booking = Booking.find(params[:id])
+    if @booking.update_attributes(review_params)
+      redirect_to user_path(@booking.ride.user)
+    else
+      flash[:notice] = "Review Failed, Make sure you have Review and Rating"
     end
   end
 
@@ -35,6 +51,10 @@ class BookingsController < ApplicationController
 
   def load_ride
     @ride = Ride.find(params[:ride_id])
+  end
+
+  def review_params
+    params.require(:booking).permit(:review, :rating)
   end
 
 end

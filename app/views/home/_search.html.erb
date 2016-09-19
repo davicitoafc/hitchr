@@ -1,12 +1,21 @@
 
-<% @rides.reverse.each do |ride| %>
-  <div class="grid">
-    <figure class="effect-sadie">
-      <figcaption>
-        <h2>Time: <%= ride.time.strftime("%-l:%M %p") %><span><br>Price: $<%= ride.price %></span></h2>
-        <p>Date: <%= ride.date.strftime("%b %-d, %Y") %><br>Driver: <%= ride.user.first_name %></p>
-        <a href="<%= ride_path(ride) %>">View Ride</a>
-      </figcaption>
-    </figure>
-  </div>
+<% if @rides.any? %>
+  <% @rides.reverse.each do |ride| %>
+    <% unless ride.completed == true %>
+      <div class="grid">
+        <figure class="effect-sadie">
+          <figcaption>
+            <h2>Departs: <%= ride.date.strftime("%b %-d, %Y") %> at
+              <%= ride.time.strftime("%-l:%M %p") %><br><b>$<%= ride.price %></b><br>
+                <%= ride.start_location %> &#8594 <%= ride.end_location %></h2>
+            <p>Driver: <%= ride.user.first_name %></p>
+            <a href="<%= ride_path(ride) %>">View Ride</a>
+          </figcaption>
+        </figure>
+      </div>
+    <%end%>
+  <%end%>
+
+<% else %>
+  <h2 class="search-empty">Sorry, there aren't any rides available for either this time or location. Try broadening your search!</h2>
 <%end%>

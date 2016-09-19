@@ -6812,10 +6812,11 @@ textarea.parsley-error {
 /* line 47, /home/jave/Desktop/bitmaker/projects/hitchr/app/assets/stylesheets/custom.css.scss */
 input#password, input#email {
   color: black;
-  background-color: #eee;
+  background-color: white;
   width: 100%;
   height: 50px;
   border: 3px solid #21f4ab;
+
 }
 
 /* line 56, /home/jave/Desktop/bitmaker/projects/hitchr/app/assets/stylesheets/custom.css.scss */
@@ -7270,7 +7271,7 @@ figure.effect-sadie figcaption:hover {
 /* line 443, /home/jave/Desktop/bitmaker/projects/hitchr/app/assets/stylesheets/home.scss */
 figure.effect-sadie h2 {
   padding-top: 15px;
-  font-family: "Railway", "Arial", sans-serif;
+  font-family: "Raleway", "Arial", sans-serif;
   position: absolute;
   top: 50%;
   left: 0;
@@ -7323,10 +7324,11 @@ input.search-button {
   border-bottom-color: #109a64;
   background-color: #00df88;
   color: #484848;
+
   font-size: 15px;
   padding: 9px 27px;
   border-radius: 2px;
-  font-family: railway, arial, sans-serif;
+  font-family: "Raleway", arial, sans-serif;
 }
 
 /* line 499, /home/jave/Desktop/bitmaker/projects/hitchr/app/assets/stylesheets/home.scss */
@@ -7896,7 +7898,7 @@ li.active a, li.active a:hover {
 
 /* line 15, /home/jave/Desktop/bitmaker/projects/hitchr/app/assets/stylesheets/validation.scss */
 .user-form-errors p {
-  font-family: railway, arial, sans-serif;
+  font-family: "Raleway", arial, sans-serif;
   font-style: italic;
 }
 /*
@@ -7914,4 +7916,3 @@ li.active a, li.active a:hover {
 
 
  */
-

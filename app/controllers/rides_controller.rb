@@ -5,8 +5,19 @@ class RidesController < ApplicationController
   end
 
   def show
+    @alt_color = true
     @ride = Ride.find(params[:id])
     @booking = @ride.bookings.build
+
+    @total_rating = [4]
+    @ride.bookings.each do |booking|
+      unless booking.rating.nil?
+        @total_rating << booking.rating
+      end
+  end
+
+      @average_rating = @total_rating.compact.inject(:+) /
+      @total_rating.length
   end
 
   def new

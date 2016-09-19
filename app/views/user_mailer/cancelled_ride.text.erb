@@ -1,6 +1,6 @@
-Hey <%= @booking.user.first_name %>,
+Hey <%= @booking.user.first_name.capitalize %>,
 
-We're so sorry, but <%= @booking.ride.user.first_name %> <%= @booking.ride.user.last_name %>
+We're so sorry, but <%= @booking.ride.user.first_name.capitalize %> <%= @booking.ride.user.last_name.capitalize %>
 cancelled their ride from <%= @booking.ride.start_location %> to <%= @booking.ride.end_location %>
 on <%= @booking.ride.date.strftime("%b %-d, %Y") %>.
 

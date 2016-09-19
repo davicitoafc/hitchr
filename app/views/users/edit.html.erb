@@ -1,3 +1,88 @@
-<h1 class="edit">Edit Profile</h1>
+<div class="show-header">
 
-<%= render "form" %>
+</div>
+
+<div id="edit_style" class="row">
+    <div id="edit_form" class="col-lg-12 text-center">
+
+      <h1 class="edit">Edit Profile</h1>
+
+        <div class="user-form-errors">
+          <% if @user.errors.any? %>
+            <p>Oops! We couldn't process your submission. Please check your entries and try again.</p>
+            <ul>
+              <% @user.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          <% end %>
+        </div>
+        <br />
+
+        <div class="user-form">
+          <!-- # use Parsley gem/jquery library to do form validations  -->
+          <%= form_for @user, html: {"data-parsley-validate" => ''} do |f| %>
+
+            <div class="field">
+              <%= f.label :first_name %> <br />
+              <%= f.text_field :first_name, "data-parsley-trigger" => "blur", :required => "",
+              "data-parsley-required-message" => "Please enter your first name." %>
+            </div>
+
+            <div class="field">
+              <%= f.label :last_name %> <br />
+              <%= f.text_field :last_name, "data-parsley-trigger" => "blur", :required => "",
+              "data-parsley-required-message" => "Please enter your last name." %>
+            </div>
+
+            <div class="field">
+              <%= f.label :gender %> <br />
+              <%= f.select :gender, [['Male','Male'],['Female','Female'], ['Other','Other']],
+              "data-parsley-trigger" => "blur", :required => "" %>
+            </div>
+
+            <div class="field">
+              <%= f.label :date_of_birth %> <br />
+              <%= f.date_select :date_of_birth, start_year: Date.today.year - 18, end_year: 1940,
+              "data-parsley-trigger" => "blur", :required => "",
+              "data-parsley-required-message" => "Please enter your birthday." %>
+              <p class="form_warning">You must be at least 18 years old to sign up!</p>
+            </div>
+
+            <div class="field">
+              <%= f.label :email %> <br />
+              <%= f.text_field :email, "data-parsley-type" => "email",
+              "data-parsley-trigger" => "blur", :required => "",
+              "data-parsley-required-message" => "Please enter your email address.",
+              "data-parsley-type-message" => "Oops! There seems to be a typo! Please try again." %>
+            </div>
+
+            <div class="field">
+              <%= f.label :phone_number %> <br />
+              <%= f.text_field :phone_number, :placeholder => "416 123 4567",
+              "data-parsley-pattern" => "^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$",
+              "data-parsley-trigger" => "blur",
+              "data-parsley-minlength" => "6", :required => "",
+              "data-parsley-required-message" => "Please enter your number.",
+              "data-parsley-minlength-message" => "Please input at least 6 digits." %>
+            </div>
+
+            <div class="field">
+              <div class="input-group">
+                <span class="input-group-btn">
+                  <span class="btn btn-file">
+                   <%= f.label "Choose a picture", class: "btn btn-default btn-file" %><br />
+                   <%= f.file_field :avatar, "data-parsley-pattern" => "/\.(jpe?g|png)$/i",
+                   class: "btn btn-default btn-file", "data-parsley-pattern-message" =>
+                     "jpg/png files only please." %></span>
+                </span>
+              </div>
+            </div>
+
+            <div class="field">
+              <%= f.submit "Save", :class => "save_button" %>
+            </div>
+          <% end %>
+        </div>
+    </div>
+</div>

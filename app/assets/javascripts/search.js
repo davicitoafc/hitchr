@@ -21,7 +21,7 @@ $(function() {
       dataType: 'html'
     }).done(function(responseData) {
       $('.ride-list').html('');
-      $('.ride-list').append(responseData)
+      $('.ride-list').prepend(responseData)
     });
   });
 });

@@ -28,7 +28,7 @@ $(document).ready(function() {
          }
        });
 
-
+// change background color on hamburger click
     $('.navbar-toggle').on('click', function(){
       $(".navbar-fixed-top").toggleClass('alt-color');
     });

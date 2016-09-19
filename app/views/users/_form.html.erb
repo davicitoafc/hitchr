@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-lg-12 text-center">
-      <h1>Sign Up</h1>
+      <div class="signup"><h1>Sign up for Hitchr</h1></div>
       <b />
 
 
@@ -78,19 +78,25 @@
           <div class="field">
              <%= f.label :password_confirmation %><br />
              <%= f.password_field :password_confirmation,
-             "data-parsley-minlength" => "6", "data-parsley-equalto" => "#user_password", "data-parsley-trigger" => "blur",
+             "data-parsley-minlength" => "6", "data-parsley-equalto" => "input#user_password", "data-parsley-trigger" => "blur",
              :required => "", "data-parsley-required-message" => "Please confirm your password.",
              "data-parsley-equalto-message" => "Oops! Looks liks your passwords don't match. Please try again." %>
           </div>
 
           <div class="field">
-             <%= f.label :avatar %><br />
-             <%= f.file_field :avatar, "data-parsley-pattern" => "/\.(jpe?g|png)$/i" %>
-             <p class="form_warning">Your picture (jpg/jpeg/png) should be less than 3MB.</p>
+            <div class="input-group">
+              <span class="input-group-btn">
+                <span class="btn btn-file">
+                 <%= f.label "Choose a picture", class: "btn btn-default btn-file" %><br />
+                 <%= f.file_field :avatar, "data-parsley-pattern" => "/\.(jpe?g|png)$/i",
+                 class: "btn btn-default btn-file", "data-parsley-pattern-message" =>
+                   "jpg/png files only please." %></span>
+              </span>
+            </div>
           </div>
 
           <div class="field">
-            <%= f.submit "Save" %>
+            <%= f.submit "Sign up" %>
           </div>
         <% end %>
       </div>

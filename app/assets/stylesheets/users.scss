@@ -2,7 +2,722 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.user-avatar {
-  width: 150px;
-  height: 150px;
+
+// .image_div {
+//   margin: 0 auto;
+//   width: 50%;
+//   padding-bottom: 50px;
+//   margin-left: 135px;
+// }
+//
+// .user-avatar {
+//   width: 150px;
+//   height: 150px;
+//   margin: 0 auto;
+// }
+//
+// .user_profile {
+//   margin: 0 auto;
+//   width: 50%;
+// }
+
+a:nth-child(2) {
+    color: #7FB5DA;
+}
+
+.offer-button {
+  background-color: #7FB5DA;
+  border-style: none;
+  width: 120px;
+  height: 30px;
+  color: #fff;
+}
+
+.offer-button:hover {
+  background-color: #0ec6f1;
+  transition: 0.5s ease;
+}
+
+
+#user_contact {
+  clear: both;
+  float: right;
+  margin-top: -60px;
+}
+
+#user_details {
+  width: 75%;
+  margin: 0 auto;
+  padding-bottom: 10px;
+}
+
+.user_header {
+  font-family: inherit;
+  font-size: 3em;
+  text-align: center;
+  margin-bottom: 50px;
+  width: 125%;
+  margin-left: -20px;
+}
+
+.user_content {
+    margin-bottom: 100px;
+}
+
+.clearfix:before,
+.clearfix:after {
+  display: block;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+.rating {
+  text-align: center;
+}
+
+.user_links {
+  text-align: center;
+}
+
+a.button_style {
+    font-size: 16px;
+    padding: 4px;
+}
+
+p.user_name {
+  text-align: left;
+}
+
+// .jq-ry-group-wrapper {
+//   margin-left: 120px;
+// }
+
+// p.user_name {
+//   margin-left: 80px;
+// }
+
+
+// @media only screen
+//
+// and (min-width: 1500px)
+//
+// {
+// }
+
+@media only screen
+
+and (min-width: 768px)
+and (max-width: 900px)
+
+{
+  .jq-ry-group-wrapper {
+    margin-left: 30px;
+  }
+
+  p.user_name {
+    margin-left: 18px;
+  }
+
+  .image_div {
+    margin: 0 auto;
+    width: 50%;
+    padding-bottom: 50px;
+  }
+
+  .user-avatar {
+    width: 110px;
+    height: 110px;
+    margin-left: 5px;
+  }
+
+  .user_profile {
+    margin: 0 auto;
+    width: 50%;
+  }
+
+  .user-header {
+    width: 150%;
+  }
+
+
+
+}
+
+
+
+
+@media only screen
+
+and (min-width: 900px)
+and (max-width: 1099px)
+
+{
+  .jq-ry-group-wrapper {
+    margin-left: 20px;
+  }
+
+  p.user_name {
+    margin-left: 5px;
+  }
+
+  .image_div {
+    margin: 0 auto;
+    width: 50%;
+    padding-bottom: 50px;
+  }
+
+  .user-avatar {
+    width: 110px;
+    height: 110px;
+    margin-left: 0px;
+  }
+
+  .user_profile {
+    margin: 0 auto;
+    width: 50%;
+  }
+
+  .user-header {
+    width: 125%;
+  }
+
+
+}
+
+
+@media only screen
+
+and (min-width: 1100px)
+and (max-width: 1199px)
+
+{
+  .jq-ry-group-wrapper {
+    margin-left: 40px;
+  }
+
+  p.user_name {
+    margin-left: 20px;
+  }
+
+  .image_div {
+    margin: 0 auto;
+    width: 50%;
+    padding-bottom: 50px;
+  }
+
+  .user-avatar {
+    width: 120px;
+    height: 120px;
+    margin-left: 0px;
+  }
+
+  .user_profile {
+    margin: 0 auto;
+    width: 50%;
+  }
+
+  .user-header {
+    width: 125%;
+  }
+
+}
+
+@media only screen
+
+and (min-width: 1200px)
+and (max-width: 1299px)
+
+{
+  .jq-ry-group-wrapper {
+    margin-left: 50px;
+  }
+
+  p.user_name {
+    margin-left: 40px;
+  }
+
+  .image_div {
+    margin: 0 auto;
+    width: 50%;
+    padding-bottom: 50px;
+  }
+
+  .user-avatar {
+    width: 120px;
+    height: 120px;
+    margin-left: 10px;
+  }
+
+  .user_profile {
+    margin: 0 auto;
+    width: 50%;
+  }
+
+  .user-header {
+    width: 125%;
+  }
+
+}
+
+
+
+@media only screen
+
+and (min-width: 1300px)
+and (max-width: 1499px)
+
+{
+  .jq-ry-group-wrapper {
+    margin-left: 70px;
+  }
+
+  p.user_name {
+    margin-left: 40px;
+  }
+
+  .image_div {
+    margin: 0 auto;
+    width: 50%;
+    padding-bottom: 50px;
+  }
+
+  .user-avatar {
+    width: 130px;
+    height: 130px;
+    margin-left: 10px;
+  }
+
+  .user_profile {
+    margin: 0 auto;
+    width: 50%;
+  }
+
+  .user-header {
+    width: 125%;
+  }
+
+}
+
+
+@media only screen
+
+and (min-width: 1500px)
+and (max-width: 1699px)
+
+{
+  .jq-ry-group-wrapper {
+    margin-left: 100px;
+  }
+
+  p.user_name {
+    margin-left: 60px;
+  }
+
+  .image_div {
+    margin: 0 auto;
+    width: 50%;
+    padding-bottom: 50px;
+  }
+
+  .user-avatar {
+    width: 175px;
+    height: 175px;
+    margin-left: 10px;
+  }
+
+  .user_profile {
+    margin: 0 auto;
+    width: 50%;
+  }
+
+  .user-header {
+    width: 125%;
+  }
+
+}
+
+
+@media only screen
+
+and (min-width: 1700px)
+and (max-width: 1916px)
+
+{
+  .jq-ry-group-wrapper {
+    margin-left: 120px;
+  }
+
+  p.user_name {
+    margin-left: 80px;
+  }
+
+  .image_div {
+    margin: 0 auto;
+    width: 50%;
+    padding-bottom: 50px;
+    margin-left: 135px;
+  }
+
+  .user-avatar {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+  }
+
+  .user_profile {
+    margin: 0 auto;
+    width: 50%;
+  }
+
+  .user-header {
+    width: 125%;
+  }
+
+}
+
+
+////////// Style the offer ride section ///////////////////
+
+.offer-ride {
+  background-color: #fbfbfb;
+  height: 225px;
+}
+
+.offer-text {
+  padding-top: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  color: #484848;
+  font-family: arial, sans-serif;
+  display: inline-block;
+}
+
+.offer-body {
+  padding-top: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  color: #484848;
+  font-family: arial, sans-serif;
+  display: inline-block;
+}
+
+.offer-button, {
+  margin-left: 20px;
+  border-color: #00df88;
+  border-bottom-color: #109a64;
+  background-color: #00df88;
+  color: #fff;
+  font-size: 15px;
+  padding: 9px 27px;
+  border-radius: 2px;
+  font-family: arial, sans-serif;
+}
+
+// Responsive for mid-size 884px
+@media only screen
+
+and (max-width: 884px)
+
+{
+
+  .offer-ride {
+    height: 260px;
+  }
+
+  .offer-text {
+    padding-top: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+
+  }
+
+  .offer-body {
+    padding-top: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 20px;
+
+  }
+
+  .offer-button {
+    margin-left: 30px;
+
+  }
+
+}
+
+// Responsive for mid-size 833px
+@media only screen
+
+and (max-width: 833px)
+
+{
+
+  .offer-ride {
+    height: 310px;
+  }
+
+  .offer-text {
+    padding-top: 10px;
+    padding-left: 40px;
+    padding-right: 40px;
+
+  }
+
+  .offer-body {
+    padding-top: 10px;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 20px;
+
+  }
+
+  .offer-button {
+    margin-left: 40px;
+
+  }
+
+  // Responsive for mid-size
+  @media only screen
+
+  and (max-width: 774px)
+
+  {
+
+    .offer-ride {
+      height: 240px;
+    }
+
+  }
+
+
+  // Responsive for mid-size 704px
+  @media only screen
+
+  and (max-width: 704px)
+
+  {
+
+    .offer-ride {
+      height: 220px;
+    }
+
+  }
+
+  // Responsive for mid-size 506px
+  @media only screen
+
+  and (max-width: 506px)
+
+  {
+
+    .offer-ride {
+      height: 260px;
+    }
+
+  }
+
+  // Responsive for mid-size 479px
+  @media only screen
+
+  and (max-width: 479px)
+
+  {
+
+    .offer-ride {
+      height: 290px;
+    }
+
+  }
+
+  // Responsive for mid-size 406px
+  @media only screen
+
+  and (max-width: 406px)
+
+  {
+
+    .offer-ride {
+      height: 340px;
+    }
+
+  }
+
+
+  // Responsive for mid-size 369px
+  @media only screen
+
+  and (max-width: 369px)
+
+  {
+
+    .offer-ride {
+      height: 380px;
+    }
+
+  }
+
+  // Responsive for mid-size 344px
+  @media only screen
+
+  and (max-width: 344px)
+
+  {
+
+    .offer-ride {
+      height: 420px;
+    }
+
+    .offer-text{
+      display:none;
+    }
+
+  }
+
+
+  // Responsive for mid-size 344px
+  @media only screen
+
+  and (max-width: 320px)
+
+  {
+
+    .offer-ride {
+      height: 280px;
+      width: 220px;
+    }
+
+    .offer-text{
+      display:none;
+    }
+
+  }
+
+}
+
+///////////// Style Rides for Edit User ////////////
+
+
+
+
+@media only screen and (min-width: 768px) {
+
+ #edit_style {
+     margin-left: auto;
+     margin-right: auto;
+     width: 30%;
+   }
+
+   #edit_form {
+     margin: 0 auto;
+     width: auto;
+  }
+
+}
+
+@media only screen and (min-width: 1024px) {
+
+ #edit_style {
+     margin-left: auto;
+     margin-right: auto;
+     width: 30%;
+   }
+
+   #edit_form {
+     margin: 0 auto;
+     width: auto;
+  }
+
+}
+
+@media only screen and (min-width: 1440px) {
+
+ #edit_style {
+     margin-left: auto;
+     margin-right: auto;
+     width: 30%;
+   }
+
+   #edit_form {
+     margin: 0 auto;
+     width: auto;
+  }
+
+}
+
+///////////// Style Rides I'm Offering Section ////////////
+
+ul {
+  list-style: none;
+}
+
+li.offered-ride {
+  background-color: #fbfbfb;
+  margin-left: -40px;
+  margin-bottom: 40px;
+  padding: 40px;
+  color: #484848;
+}
+
+h3#midline {
+  font-size: 24px;
+  margin-bottom: 40px;
+  color: #484848;
+}
+
+p#status {
+    border-top: black solid 1px;
+    padding-top: 15px;
+    font-size: 18px;
+}
+
+
+h5#hitches {
+  font-size: 18px;
+  border-top: solid black 1px;
+  padding-top: 10px;
+  margin-top: 0px;
+}
+
+p#sorry, p#comment {
+  color: #626262;
+}
+
+.cancel-ride-button {
+  font-size: 15px;
+  padding: 10px 15px;
+  border-radius: 2px;
+  font-family: arial, sans-serif;
+  border-color: #ff5a5f;
+  border-bottom-color: #e00007;
+  background-color: #ff5a5f;
+  color: #fff;
+}
+
+
+
+.reject-button {
+  font-size: 15px;
+  padding: 9px 27px;
+  border-radius: 2px;
+  font-family: arial, sans-serif;
+  border-color: #ff5a5f;
+  border-bottom-color: #e00007;
+  background-color: rgb(202, 60, 60);
+  color: #fff;
+}
+
+.seat-booker-button {
+  color: #626262;
+  font-size: 18px;
+
+}
+
+.seat-booker-button:hover {
+  color: #0ec6f1;
+  font-size: 18px;
+
 }

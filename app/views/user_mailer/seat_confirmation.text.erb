@@ -1,12 +1,12 @@
-Hey <%= @ride.user.first_name %>,
+Hey <%= @ride.user.first_name.capitalize %>,
 
-<%= @booking.user.first_name %> <%= @booking.user.last_name %>
+<%= @booking.user.first_name.capitalize %> <%= @booking.user.last_name.capitalize %>
 wants to hitch a ride for <%= @booking.seats %> people with you from
 <%= @ride.start_location %> to <%= @ride.end_location %>
 on <%= @ride.date.strftime("%b %-d, %Y") %>.
 
 If you'd like to turn down the request, click DECLINE under the MY RIDES tab:
-<%= user_url(@ride.user) %>, otherwise we'll let <%= @booking.user.first_name %>
+<%= user_url(@ride.user) %>, otherwise we'll let <%= @booking.user.first_name.capitalize %>
 know that you accept the request.
 
 

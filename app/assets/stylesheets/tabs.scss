@@ -6,6 +6,36 @@
     width: 50%;
 }
 
+@media only screen
+
+and (max-width: 774px)
+
+{
+  .tabs {
+    width:75%;
+  }
+}
+
+@media only screen
+
+and (max-width: 656px)
+
+{
+  .tabs {
+    width:95%;
+  }
+}
+
+@media only screen
+
+and (max-width: 320px)
+
+{
+  .tabs {
+    padding:none;
+  }
+}
+
     /*----- Tab Links -----*/
     /* Clearfix */
     .tab-links:after {
@@ -43,7 +73,7 @@
 
     /*----- Content of Tabs -----*/
     .tab-content {
-        padding:15px;
+        padding:60px;
         border-radius:8px;
         box-shadow:-6px 6px 6px rgba(0,0,0,0.15);
         background:#eee;

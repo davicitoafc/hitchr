@@ -1,42 +1,49 @@
 
-<!-- First wall  -->
-    <div id="outer-wrap" style="width: 100%; height: 600px;">
+<!-- First slide  -->
+    <div id="outer-wrap" style="width: 100%; height: 640px;">
       <div id="video-wrap" class="video-wrap">
           <video id="my-video" preload="metadata" autoplay loop>
-              <source src="<%= asset_path 'video.mp4' %>" type="video/mp4">
+              <source src="<%= asset_path 'NewVideo2.mp4' %>" type="video/mp4">
+              <source src="<%= asset_path 'NewVideo2.ogv' %>" type="video/ogv">
+              <source src="<%= asset_path 'NewVideo2.webm' %>" type="video/webm">
           </video>
           <div class="content-container">
             <div class="content-overlay">
-                <!-- <h1 id="main-title">HITCHR</h1> -->
                 <div class="title"><%= image_tag('title.png')%></div>
                 <h3 id="tagline">Book an empty seat with a trusted driver, headed your way.</h3>
             </div>
             <div id="search-form" >
               <%= form_tag search_path, method: "get", class: "search" do %>
 
-              <div class="search_wrap" id="start_location_wrap">
-                <div class="search_wrap_icon"><%= image_tag "Start_4Real.png" %></div>
-                <%= text_field_tag :start_location, params[:start_location], placeholder: "Starting from?" %>
-              </div>
 
-              <div class="search_wrap" id="end_location_wrap">
-                <div class="search_wrap_icon"><%= image_tag "end_for_real.png" %></div>
-              <%= text_field_tag :end_location, params[:end_location], placeholder: "Where to?" %>
-              </div>
+
+                <div class="search_wrap" id="start_location_wrap">
+                  <div class="search_wrap_icon"><%= image_tag "Start_4Real.png" %></div>
+                  <%= text_field_tag :start_location, params[:start_location], placeholder: "Start City" %>
+                </div>
+
+                <div class="search_wrap" id="end_location_wrap">
+                  <div class="search_wrap_icon"><%= image_tag "end_for_real.png" %></div>
+                  <%= text_field_tag :end_location, params[:end_location], placeholder: "End City" %>
+                </div>
+
+
+              <%= date_field :date, params[:date], min: Date.today, include_blank: true, class: 'date-search', placeholder: "yyyy-mm-dd" %>
 
               <div id="search_date_wrap">
-              <%= date_field :date, params[:date], min: Date.today, include_blank: true, class: 'date-search' %>
-              <%= submit_tag "Search", name: nil, class: "search-button" %>
-              <% end %>
+                <%= submit_tag "Search", name: nil, class: "search-button" %>
+                <% end %>
               </div>
+
             </div>
+
           </div>
       </div>
     </div>
-    <!-- first wall end  -->
+    <!-- first slide end  -->
 
 
-    <!-- second wall  -->
+    <!-- second slide  -->
     <div id="content_1" class="content" >
       <div class="wall2-info-container">
       <h2 class="info-1">Trek across Canada</h2>
@@ -45,21 +52,20 @@
       <h3 class="info-3" id="description">Mid to long-distance ridesharing made easy</h2>
 
       <div class="all-icons">
-        <div class="wrap-icon">
-          <div class="icon-home"><%= image_tag('save_money.png')%></div>
-          <h3 class="icon"><span>SAVE MONEY</span>, whether you're a Driver or a Passenger</h3>
-        </div>
-
-        <div class="wrap-icon">
-          <div class="icon-home"><%= image_tag('search.png')%></div>
-          <h3 class="icon"><span>FIND A RIDE</span>, whenever you want, wherever you want</h3>
-        </div>
-
-        <div class="wrap-icon">
-          <div class="icon-home"><%= image_tag('trust.png')%></div>
-          <h3 class="icon"><span>CHOOSE</span> a trusted, community-reviewed travel buddy</h3>
-        </div>
+          <div class="icon-home"><%= image_tag('save_money.png', :class => "icon_styling-1")%>
+          </br><h3 class="icon"><span>SAVE MONEY</span></br> As a Driver or a Passenger</h3>
+          </div>
+          <div class="icon-home"><%= image_tag('search.png', :class => "icon_styling-2")%>
+          </br><h3 class="icon"><span>FIND &amp OFFER A RIDE</span></br> Whenever you want, wherever you want</h3>
+          </div>
+          <div class="icon-home"><%= image_tag('trust.png', :class => "icon_styling-3")%>
+          </br><h3 class="icon"><span>CHOOSE</span></br> A trusted, community-reviewed travel buddy</h3>
+          </div>
       </div>
+
+
+
+    </div>
 
  <!--  second wall end  -->
 
@@ -81,8 +87,10 @@
         <div class="grid">
           <figure class="effect-sadie">
             <figcaption>
-              <h2>Departs: <%= ride.date.strftime("%b %-d, %Y") %> at <%= ride.time.strftime("%-l:%M %p") %><span><br>Price: $<%= ride.price %></span></h2>
-              <p>From: <%= ride.start_location %> to: <%= ride.end_location %><br>Driver: <%= ride.user.first_name %></p>
+              <h2>Departs: <%= ride.date.strftime("%b %-d, %Y") %> at
+                <%= ride.time.strftime("%-l:%M %p") %><br><b>$<%= ride.price %></b><br>
+              <%= ride.start_location %> &#8594 <%= ride.end_location %></h2>
+              <p>Driver: <%= ride.user.first_name %></p>
               <a href="<%= ride_path(ride) %>">View Ride</a>
             </figcaption>
           </figure>

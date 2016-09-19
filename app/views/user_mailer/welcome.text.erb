@@ -1,10 +1,10 @@
 HITCHR
 -------------------
-Welcome to Hitchr, <%= @user.first_name %>!
+Welcome to Hitchr, <%= @user.first_name.capitalize %>!
 
 We're so excited to have you along for the ride.
 
-Check out Hitchr by clicking the link: <%= root_url %>
+Check out Hitchr by clicking the link: <%= link_to "Hitchr!", root_url %>
 
 Love,
 The Hitchr Team

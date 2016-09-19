@@ -10,8 +10,8 @@ class SessionsController < ApplicationController
         redirect_back_or_to(root_path)
       else
         flash[:error] = 'Oops! Password or email seems to be incorrect. Please try logging in again.'
-        render :new
-       end
+        redirect_back_or_to(root_path)
+      end
     end
 
     def destroy

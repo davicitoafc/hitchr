@@ -1371,7 +1371,7 @@ var Validator = ( function ( ) {
   // https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Array/indexOf
   if (!Array.prototype.indexOf)
     Array.prototype.indexOf = function (searchElement /*, fromIndex */ ) {
-        
+
         if (this === null) {
             throw new TypeError();
         }
@@ -2227,7 +2227,7 @@ var Validator = ( function ( ) {
       // HTML5 max
       else if ('undefined' !== typeof this.$element.attr('max'))
         this.addConstraint('max', this.$element.attr('max'), undefined, true);
-    
+
       // length
       if ('undefined' !== typeof this.$element.attr('minlength') && 'undefined' !== typeof this.$element.attr('maxlength'))
         this.addConstraint('length', [this.$element.attr('minlength'), this.$element.attr('maxlength')], undefined, true);
@@ -5993,7 +5993,7 @@ $(document).ready(function() {
 
   function checkPrecision (value, minValue, maxValue) {
 
-    /* 
+    /*
      * This function removes the unnecessary precision, at Min and Max Values
      */
 
@@ -6049,9 +6049,9 @@ $(document).ready(function() {
     }
 
     var hexValues = hexRegex.exec(hex),
-	r = parseInt(hexValues[1], 16),
-	g = parseInt(hexValues[2], 16),
-	b = parseInt(hexValues[3], 16);
+  r = parseInt(hexValues[1], 16),
+  g = parseInt(hexValues[2], 16),
+  b = parseInt(hexValues[3], 16);
 
     return {r:r, g:g, b:b};
   };
@@ -6059,16 +6059,16 @@ $(document).ready(function() {
   function getChannelValue(startVal, endVal, percent) {
 
     /*
-     * Returns a value between `startVal` and `endVal` based on the percent 
+     * Returns a value between `startVal` and `endVal` based on the percent
      */
 
     var newVal = (endVal - startVal)*(percent/100);
- 
+
     newVal = Math.round(startVal + newVal).toString(16);
 
     if (newVal.length === 1) {
 
-	newVal = "0" + newVal;
+  newVal = "0" + newVal;
     }
 
     return newVal;
@@ -6110,7 +6110,7 @@ $(document).ready(function() {
 
     var that = this;
 
-    // Remove any stuff that is present inside the container, and add the plugin class 
+    // Remove any stuff that is present inside the container, and add the plugin class
     $node.empty().addClass("jq-ry-container");
 
     /*
@@ -6124,7 +6124,7 @@ $(document).ready(function() {
      * `$ratedGroup`: is the container for row of stars that display the actual rating.
      *
      * The rating is displayed by adjusting the width of `$ratedGroup`
-     */  	
+     */
     var $groupWrapper = $("<div/>").addClass("jq-ry-group-wrapper")
                                    .appendTo($node);
 
@@ -6199,7 +6199,7 @@ $(document).ready(function() {
 
       /*
        * Set the width of the `this.node` based on the width of each star and
-       * the space between them 
+       * the space between them
        */
 
       containerWidth = starWidth*options.numStars + spacing*(options.numStars - 1);
@@ -6224,7 +6224,7 @@ $(document).ready(function() {
       var starHeight = options.starWidth = newWidth;
 
       starWidth = window.parseFloat(options.starWidth.replace("px", ""));
- 
+
       $normalGroup.find("svg")
                   .attr({width : options.starWidth,
                          height: starHeight});
@@ -6234,7 +6234,7 @@ $(document).ready(function() {
                         height: starHeight});
 
       setContainerWidth();
-       
+
       return $node;
     }
 
@@ -6244,7 +6244,7 @@ $(document).ready(function() {
        * Set spacing between the SVG stars, called whenever one changes
        * the `spacing` option
        */
-      
+
       options.spacing = newSpacing;
 
       spacing = parseFloat(options.spacing.replace("px", ""));
@@ -6253,7 +6253,7 @@ $(document).ready(function() {
                   .css({"margin-left": newSpacing});
 
       $ratedGroup.find("svg:not(:first-child)")
-                 .css({"margin-left": newSpacing}); 
+                 .css({"margin-left": newSpacing});
 
       setContainerWidth();
 
@@ -6366,8 +6366,8 @@ $(document).ready(function() {
       step = options.maxValue/options.numStars;
 
       if (options.rating > newValue) {
-      
-        setRating(newValue); 
+
+        setRating(newValue);
       }
 
       showRating();
@@ -6404,7 +6404,7 @@ $(document).ready(function() {
 
       /*
        * This function will be called if one changes the `fullStar` option
-       */   
+       */
 
       options.fullStar = newValue;
 
@@ -6416,26 +6416,26 @@ $(document).ready(function() {
       /*
        * Rounds the value of rating if `halfStar` or `fullStar` options are chosen
        */
-      
+
       var remainder = value%step,
           halfStep = step/2,
           isHalfStar = options.halfStar,
           isFullStar = options.fullStar;
 
       if (!isFullStar && !isHalfStar) {
-      
-        return value;  
+
+        return value;
       }
 
       if (isFullStar || (isHalfStar && remainder > halfStep)) {
-      
+
         value += step - remainder;
       } else {
-      
+
         value = value - remainder;
-        
+
         if (remainder > 0) {
-          
+
           value += halfStep;
         }
       }
@@ -6478,7 +6478,7 @@ $(document).ready(function() {
 
         if (spacing > 0) {
 
-	  /*
+    /*
            * If there is spacing between stars, take the percentage of width covered
            * and subtract the percentage of width covered by stars and spacing, to find
            * how many stars are covered, the number of stars covered is the rating
@@ -6490,7 +6490,7 @@ $(document).ready(function() {
           var remPrcnt = calcPrcnt;
 
           while (remPrcnt > 0) {
-            
+
             if (remPrcnt > percentOfStar) {
 
               calculatedRating += step;
@@ -6499,15 +6499,15 @@ $(document).ready(function() {
 
               calculatedRating += remPrcnt/percentOfStar*step;
               remPrcnt = 0;
-            }  
+            }
           }
         } else {
-        
+
           /*
            * If there is not spacing between stars, the fraction of width covered per
            * `maxValue` is the rating
            */
-          calculatedRating = calcPrcnt * (options.maxValue);  
+          calculatedRating = calcPrcnt * (options.maxValue);
         }
 
         // Round the rating if `halfStar` or `fullStar` options are chosen
@@ -6726,7 +6726,7 @@ $(document).ready(function() {
           method = setHalfStar;
           break;
         case "fullStar":
-        
+
           method = setFullStar;
           break;
         case "readOnly":
@@ -6734,11 +6734,11 @@ $(document).ready(function() {
           method = setReadOnly;
           break;
         case "spacing":
-        
+
           method = setSpacing;
           break;
         case "onInit":
-          
+
           method = setOnInit;
           break;
         case "onSet":
@@ -6799,11 +6799,11 @@ $(document).ready(function() {
 
       that.rating(resultantRating);
     }
-    
+
     function onInit(e, data) {
 
       if(options.onInit && typeof options.onInit === "function") {
-        
+
         /* jshint validthis:true */
         options.onInit.apply(this, [data.rating, that]);
       }
@@ -6863,7 +6863,7 @@ $(document).ready(function() {
 
   function getInstance (node, collection) {
 
-    /* 
+    /*
      * Given a HTML element (node) and a collection of RateYo instances,
      * this function will search through the collection and return the matched
      * instance having the node
@@ -6885,7 +6885,7 @@ $(document).ready(function() {
 
   function deleteInstance (node, collection) {
 
-    /* 
+    /*
      * Given a HTML element (node) and a collection of RateYo instances,
      * this function will search through the collection and delete the
      * instance having the node, and return the modified collection

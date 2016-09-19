@@ -3,39 +3,47 @@
 
 </div>
 <div class="show_container">
+  <div class="show_content_container">
+
   <h1 class="header">Ride Info</h1>
       <div class="user_info">
         <div class="picture_div">
-          <h3 class="driver-text">Driver :</h3>
-          <h2 class="driver-link"><%= link_to "#{@ride.user.first_name} #{@ride.user.last_name}", user_path(@ride.user), class: "driver-name" %></h2>
+          <h3 class="driver-text">Driver:</h3>
+          <h2 class="driver-link"><%= link_to "#{@ride.user.first_name.capitalize} #{@ride.user.last_name.capitalize}", user_path(@ride.user), class: "driver-name" %></h2>
           <p><%=image_tag @ride.user.avatar.url , class: "user-avatar"%></p>
         </div>
+
+        <!-- Available Seats incrementation -->
+          <% arr = [0] %>
+          <% @ride.bookings.each { |booking| arr << booking.seats} %>
+          <% total_seats = arr.compact.inject(:+) %>
+
             <div class="details">
-              <h3>Ride Details:</h3>
-                <p>From:  <%= @ride.start_location %></p>
-                <p>To:  <%= @ride.end_location %></p>
-                <p>Date:  <%= @ride.date.strftime("%b %-d, %Y") %></p>
-                <p>Departure:  <%= @ride.time.strftime("%-l:%M %p") %></p>
-                <p>Seats Available:  <%= @ride.seats_available %></p>
-                <p>Price: $<%= @ride.price %></p>
+
+                <p>From: <%= @ride.start_location %></p>
+                <p>To: <%= @ride.end_location %></p>
+                <p><%= @ride.date.strftime("%b %-d, %Y") %> | <%= @ride.time.strftime("%-l:%M %p") %></p>
+                <p><%= pluralize(@ride.seats_available - total_seats < 0 ? 0 : @ride.seats_available - total_seats, "seat") %> available</p>
+                <p>$<%= @ride.price %> per seat</p>
             </div>
         </div>
         <div class="comments_style">
-          <% rating_total = [0] %>
-          <% @ride.user.reviews.each do |review| %>
-            <% rating_total << review.rating %>
-          <% end %>
-          <% rating_average = rating_total.inject(:+) / rating_total.count - 1 %>
-          <div class="rateYo stars-readonly" data-rating=<%= rating_average %>></div>
-            <%= rating_total.count - 1%> ratings
+
+          <!-- Average Rating of Driver -->
+
+          <div class="rateYo stars-readonly ride_show_stars" data-rating=<%= @average_rating %>></div>
+
+            Rated by <%= pluralize(@total_rating.length, "hitchr") %>
           <br />
 
           <h3>Comments: </h3><p> <%= @ride.comments %></p><br>
         </div>
         <div class="back_to_rides">
-          <% unless @ride.user == current_user && @ride.completed == true%>
+          <!-- Allow User to Book a seat if ride is not complete, and they are not the driver -->
+          <% unless current_user == @ride.user || @ride.completed == true %>
             <%= render "bookings/form" %>
           <% end %>
-          <%= link_to "Back to All Rides", rides_path, class: "back_to_rides_a"%>
+          <%= link_to "Back to Home", root_path, class: "back_to_rides_a"%>
         </div>
+      </div>
   </div>

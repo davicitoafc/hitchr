@@ -22,6 +22,17 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :avatar, content_type: /^image\/(jpg|jpeg|pjpeg|png|x-png)$/, :message => 'Only jpeg and png files please!'
   validates_with AttachmentSizeValidator, attributes: :avatar, less_than: 3.megabytes
 
+
+
+  def age
+    if Date.today >= date_of_birth
+      age = Date.today.year - date_of_birth.year
+    else
+      age = Date.today.year - date_of_birth.year - 1
+    end
+      age
+  end
+
   private
 
   def min_age
